@@ -2,16 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>My Parse App</title>
+    <title>Madison Holleran &middot; Memorial Soccer Tournament</title>
     <meta name="description" content="My Parse App">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
-      <h1>Register for the race!</h1>
+      <h1>Register for the tournament!</h1>
 
-      <form id="race-registration">
+      <form id="tournament-registration">
         <div class="form-group">
           <label for="name">Full name</label>
           <input type="text" class="form-control" id="name" placeholder="John Smith">
@@ -20,49 +20,35 @@
           <label for="email">Email address</label>
           <input type="email" class="form-control" id="email" placeholder="example@mail.com">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-
-      <div class="alert alert-success" role="alert" style="display:none">Thanks for registering!</div>
-      <div class="alert alert-danger" role="alert" style="display:none">There was an error... Please try again.</div>
-
-      <form id="stripe-form">
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-          data-amount="2000"
-          data-name="Demo Site"
-          data-description="2 widgets ($20.00)"
-          data-image="/128x128.png">
-        </script>
+      <form id="charge-form">
+        <div class="form-group">
+          <label for="">Card number</label>
+          <input type="text" class="form-control" data-stripe="number">
+        </div>
+        <div class="form-group">
+          <label for="">CVC</label>
+          <input type="text" class="form-control" data-stripe="cvc">
+        </div>
+        <div class="form-group">
+          <label for="">Month</label>
+          <select class="form-control" data-stripe="exp-month">
+            <option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option>
+            <option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option>
+          </select>
+          <label for="">Year</label>
+          <input type="text" class="form-control" data-stripe="exp-year">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="alert alert-success" role="alert" style="display:none">Thanks for registering!</div>
+        <div class="alert alert-danger" role="alert" style="display:none">There was an error... Please try again.</div>
+        <div class="alert alert-danger payment-errors" role="alert" style="display:none">There was an error... Please try again.</div>
       </form>
     </div>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-    <script type="text/javascript">
-      Parse.initialize("nuT9HUvp3foyQprppmA9h5vAKNK6yc7lZO4SKpGI", "TgqoS8MFSJ4YGYBtofwvDpRHBWZxxaAaMHF992DG");
-      $("#stripe-form").submit(function(e){
-        alert(this);
-        e.preventDefault();
-        console.log(this);
-      });
-      $("#race-registration").submit(function(e){
-        e.preventDefault();
-        var Runner = Parse.Object.extend("Runner");
-        var runner = new Runner();
-        runner.save({
-          name: $("#name").val(),
-          email: $("#email").val()
-        }, {
-          success: function(object) {
-            $(".alert-success").show();
-          },
-          error: function(model, error) {
-            $(".alert-danger").show();
-          }
-        });
-      });
-    </script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="app.js"></script>
   </body>
 </html>
