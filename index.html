@@ -194,22 +194,47 @@
           <p class="lead">
             Sign your team up here to enter the tournament!<br>
             You <strong>must <span style="text-decoration:underline">download</span></strong> a waiver and <strong><span style="text-decoration:underline">upload</span></strong> it with your registration.<br><br>
-            <a href="assets/waiver.pdf" class="btn btn-primary" target="_blank"><i class="glyphicon glyphicon-download" style="margin-right:5px"></i>Download Waiver</a>
+            <a href="assets/waiver.pdf" class="btn btn-primary" download><i class="glyphicon glyphicon-download" style="margin-right:5px"></i>Download Waiver</a>
           </p>
         </div>
         <div class="col-md-6 vcenter">
           <form role="form" class="animate" data-animate="fadeInUp" id="registration-form">
-            <div class="form-group">
-              <label for="team-name">Team Name</label>
-              <input type="text" class="form-control" id="team-name" placeholder="The Soccer Maniacs" required>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="team-name">Team Name</label>
+                  <input type="text" class="form-control" id="team-name" placeholder="The Soccer Maniacs" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="bracket">Bracket</label><br>
+                  <input type="radio" class="bracket" name="bracket" value="beginner"> Beginner<br>
+                  <input type="radio" class="bracket" name="bracket" value="advanced"> Advanced
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="captain-name">Captain's Name</label>
               <input type="text" class="form-control" id="captain-name" placeholder="John Doe" required>
             </div>
-            <div class="form-group">
-              <label for="captain-email">Captain's Email Address</label>
-              <input type="email" class="form-control" id="captain-email" placeholder="example@mail.com" required>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="captain-email">Captain's Email Address</label>
+                  <input type="email" class="form-control" id="captain-email" placeholder="example@mail.com" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="shirt-size">Captain's Shirt Size</label><br>
+                  <input type="radio" class="shirt-size-captain" name="shirt-size-0" value="S"> S
+                  <input type="radio" class="shirt-size-captain" name="shirt-size-0" value="M"> M
+                  <input type="radio" class="shirt-size-captain" name="shirt-size-0" value="L"> L
+                  <input type="radio" class="shirt-size-captain" name="shirt-size-0" value="XL"> XL
+                  <input type="radio" class="shirt-size-captain" name="shirt-size-0" value="XXL"> XXL
+                </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -238,6 +263,13 @@
                 <div class="form-group">
                   <input type="file" class="form-control teammate-waiver" required>
                 </div>
+                <div class="form-group">
+                  <input type="radio" class="shirt-size" name="shirt-size-1" value="S"> S
+                  <input type="radio" class="shirt-size" name="shirt-size-1" value="M"> M
+                  <input type="radio" class="shirt-size" name="shirt-size-1" value="L"> L
+                  <input type="radio" class="shirt-size" name="shirt-size-1" value="XL"> XL
+                  <input type="radio" class="shirt-size" name="shirt-size-1" value="XXL"> XXL
+                </div>
               </div>
 
               <div class="col-md-6">
@@ -247,6 +279,13 @@
                 </div>
                 <div class="form-group">
                   <input type="file" class="form-control teammate-waiver" required>
+                </div>
+                <div class="form-group">
+                  <input type="radio" class="shirt-size" name="shirt-size-2" value="S"> S
+                  <input type="radio" class="shirt-size" name="shirt-size-2" value="M"> M
+                  <input type="radio" class="shirt-size" name="shirt-size-2" value="L"> L
+                  <input type="radio" class="shirt-size" name="shirt-size-2" value="XL"> XL
+                  <input type="radio" class="shirt-size" name="shirt-size-2" value="XXL"> XXL
                 </div>
               </div>
 
@@ -258,6 +297,13 @@
                 <div class="form-group">
                   <input type="file" class="form-control teammate-waiver" required>
                 </div>
+                <div class="form-group">
+                  <input type="radio" class="shirt-size" name="shirt-size-3" value="S"> S
+                  <input type="radio" class="shirt-size" name="shirt-size-3" value="M"> M
+                  <input type="radio" class="shirt-size" name="shirt-size-3" value="L"> L
+                  <input type="radio" class="shirt-size" name="shirt-size-3" value="XL"> XL
+                  <input type="radio" class="shirt-size" name="shirt-size-3" value="XXL"> XXL
+                </div>
               </div>
 
               <div class="col-md-6">
@@ -267,6 +313,13 @@
                 </div>
                 <div class="form-group">
                   <input type="file" class="form-control teammate-waiver" required>
+                </div>
+                <div class="form-group">
+                  <input type="radio" class="shirt-size" name="shirt-size-4" value="S"> S
+                  <input type="radio" class="shirt-size" name="shirt-size-4" value="M"> M
+                  <input type="radio" class="shirt-size" name="shirt-size-4" value="L"> L
+                  <input type="radio" class="shirt-size" name="shirt-size-4" value="XL"> XL
+                  <input type="radio" class="shirt-size" name="shirt-size-4" value="XXL"> XXL
                 </div>
               </div>
 
@@ -354,19 +407,25 @@
         var x = f.files[0];
         var y = "waiver.pdf";
         z = new Parse.File(y, x);
-        waiver.set("waiver", z);
-        waiver.set("owner", $form.find('.teammate')[i].value)
+        teammateWaiver.set("waiver", z);
+        teammateWaiver.set("owner", $form.find('.teammate')[i].value)
         teammateWaiver.save();
       }
-      players.push($form.find('.teammate')[i].value);
+      var shirtsize = '.shirt-size[name=shirt-size-'+(i+1)+']:checked';
+      players.push({
+        name: $form.find('.teammate')[i].value,
+        shirt: $form.find(shirtsize).val()
+      });
     }
 
     var newteam = {
       name: $form.find('#team-name').val(),
+      bracket: $form.find('.bracket:checked').val(),
       captain: {
         name: $form.find('#captain-name').val(),
         email: $form.find('#captain-email').val(),
-        phone: $form.find('#captain-phone').val()
+        phone: $form.find('#captain-phone').val(),
+        shirt: $form.find('.shirt-size-captain:checked').val()
       },
       players: players
     }
@@ -389,10 +448,27 @@
       '<div class="form-group">'+
         '<input type="file" class="form-control teammate-waiver" required>'+
       '</div>'+
+      '<div class="form-group">'+
+        '<input type="radio" class="shirt-size" name="shirt-size-'+id+'" value="S"> S'+
+        '<input type="radio" class="shirt-size" name="shirt-size-'+id+'" value="M"> M'+
+        '<input type="radio" class="shirt-size" name="shirt-size-'+id+'" value="L"> L'+
+        '<input type="radio" class="shirt-size" name="shirt-size-'+id+'" value="XL"> XL'+
+        '<input type="radio" class="shirt-size" name="shirt-size-'+id+'" value="XXL"> XXL'+
+      '</div>'+
     '</div>';
     $("#teammates").append(teammate);
     if (count == 6) { $('#teammateButton').remove() }
   }
   </script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63832284-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
   </body>
 </html>
