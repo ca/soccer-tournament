@@ -1,54 +1,397 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Madison Holleran &middot; Memorial Soccer Tournament</title>
-    <meta name="description" content="My Parse App">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Madison Holleran Memorial Soccer Tournament</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic' rel='stylesheet'>
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="assets/css/prettyPhoto.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../docs-assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="../docs-assets/ico/favicon.png">
+    <style type="text/css">
+      .vcenter {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+      }
+      #map { border-radius: 20px; height: 416px; width: 555px; }
+      #rules-list h2 { display: inline; }
+      #rules-list li {
+        margin-top:30px;
+        margin-bottom:30px;
+      }
+    </style>
   </head>
   <body>
+
+  <!-- Parallax Background
+  ================================================== -->
+  <!-- image is set in the CSS as a background image -->
+  <div id="parallax"></div>
+  <!-- <header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
     <div class="container">
-      <h1>Register for the tournament!</h1>
-
-      <form id="tournament-registration">
-        <div class="form-group">
-          <label for="name">Full name</label>
-          <input type="text" class="form-control" id="name" placeholder="John Smith">
-        </div>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="example@mail.com">
-        </div>
-      </form>
-      <form id="charge-form">
-        <div class="form-group">
-          <label for="">Card number</label>
-          <input type="text" class="form-control" data-stripe="number">
-        </div>
-        <div class="form-group">
-          <label for="">CVC</label>
-          <input type="text" class="form-control" data-stripe="cvc">
-        </div>
-        <div class="form-group">
-          <label for="">Month</label>
-          <select class="form-control" data-stripe="exp-month">
-            <option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option>
-            <option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option>
-          </select>
-          <label for="">Year</label>
-          <input type="text" class="form-control" data-stripe="exp-year">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <div class="alert alert-success" role="alert" style="display:none">Thanks for registering!</div>
-        <div class="alert alert-danger" role="alert" style="display:none">There was an error... Please try again.</div>
-        <div class="alert alert-danger payment-errors" role="alert" style="display:none">There was an error... Please try again.</div>
-      </form>
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="../" class="navbar-brand">Madison Holleran Memorial Soccer Tournament</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#hero">Home</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="#image">About</a>
+          </li>
+          <li>
+            <a href="#gallery">Gallery</a>
+          </li>
+          <li>
+            <a href="#faq">FAQ</a>
+          </li>
+          <li>
+            <a href="#slider">Testimonials</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right header-button">
+          <li>
+            <button type="button" class="btn btn-primary"><a href="#register">Register</a></button>
+          </li>
+        </ul>
+      </nav>
     </div>
+  </header> -->
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript" src="app.js"></script>
+  <section id="hero" class="section" style="margin-top:0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center" style="padding-top:200px;padding-bottom:200px;color:white">
+          <h1 style="text-shadow:1px 1px 10px black;font-weight:900;font-size:72px">Madison Holleran Memorial Soccer Tournament</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="overview animate" data-animate="flipInX">
+            <h1>the <strong>Madison Holleran</strong> Memorial Tournament is</h1>
+            <p class="lead">a soccer tournament held on the Northern Highlands Regional High School turf field. It is a 5v5 soccer tournament using pug goals and small-sided fields. Everyone who participates will receive a t-shirt, and the winning team will receive a gift basket of gift cards to various stores/restaurants.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h2>Our purpose</h2>
+        <div class="col-md-6">
+          <p class="lead">To raise money for the Madison Holleran foundation, while remembering Madison and the sport she loved.</p>
+        </div>
+        <div class="col-md-6">
+          <p class="lead">And to have a really good time playing soccer with our friends!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="image" class="section" style="background-color:#FFF; border-top: 1px solid rgba(0, 0, 0, .1);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 sol-sm-12">
+          <div class="overview animate" data-animate="flipInX">
+            <h1>Saturday, June 27</h1>
+            <p class="lead">Check-in begins at 9AM and games start at 10AM!</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div id="map"></div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="content-block animate" data-animate="fadeInRight" style="margin-top: 60px;">
+            <h2>Northern Highlands Turf Field</h2>
+            <p class="lead">Saturday, June 27</p>
+            <hr />
+            <p>Arrive by 9AM to check in with your team. Please note that you must submit a waiver before June 27th for your team to be eligible for this tournament! Games will begin at 10AM.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 sol-sm-12">
+          <div class="overview animate" data-animate="flipInY">
+            <h1><strong>Rules</strong></h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-4 col-xs-6">
+          <a href="assets/images/2.jpg">
+            <img src="assets/images/2.jpg" class="img-rounded image-responsive animate" data-animate="fadeIn">
+          </a>
+          <a href="assets/images/6.jpg">
+            <img src="assets/images/6.jpg" class="img-rounded image-responsive animate" data-animate="fadeIn">
+          </a>
+          <a href="assets/images/8.jpg">
+            <img src="assets/images/8.jpg" class="img-rounded image-responsive animate" data-animate="fadeIn">
+          </a>
+        </div>
+        <div class="col-lg-8">
+          <ol id="rules-list">
+            <li>
+              <h2><strong>No fouling of any kind.</strong></h2>
+              <p class="lead">Slide tackling or severe fouls will result in immediate removal from the tournament.</p>
+            </li>
+            <li>
+              <h2><strong>Absolutely no alcohol or illegal substances</strong></h2>
+              <p class="lead">will be tolerated during the tournament. The user or holder will be immediately removed from the tournament.</p>
+            </li>
+            <li>
+              <h2><strong>15 minute games</strong></h2>
+              <p class="lead">to be played with no half time.</p>
+            </li>
+            <li>
+              <h2><strong>Typical soccer regulations</strong></h2>
+              <p class="lead">and no arguing with the referee will be tolerated.</p></li>
+            <li>
+              <h2><strong>If a waiver is not signed</strong></h2>
+              <p class="lead">and submitted prior to the date of the tournament, the player who failed to do so will not be allowed to participate.</p>
+            </li>
+            <li><h2>On a lighter note, have fun!</h2></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="register" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="overview animate" data-animate="fadeInDown">
+          <h1><strong>Register</strong></h1>
+          <p class="lead">
+            Sign your team up here to enter the tournament!<br>
+            You <strong>must</strong> download <a href="assets/waiver.pdf" target="_blank">this waiver</a> and upload it with your registration.
+          </p>
+        </div>
+        <div class="col-md-6 vcenter">
+          <form role="form" class="animate" data-animate="fadeInUp" id="registration-form">
+            <div class="form-group">
+              <label for="team-name">Team Name</label>
+              <input type="text" class="form-control" id="team-name" placeholder="The Soccer Maniacs" required>
+            </div>
+            <div class="form-group">
+              <label for="captain-name">Captain's Name</label>
+              <input type="text" class="form-control" id="captain-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="captain-email">Captain's Email Address</label>
+              <input type="email" class="form-control" id="captain-email" placeholder="example@mail.com" required>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="captain-phone">Captain's Phone Number</label>
+                  <input type="text" class="form-control" id="captain-phone" placeholder="(201) 123 4567" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="team-waiver">Team Waiver</label>
+                  <input type="file" class="form-control" id="team-waiver" required>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <p class="lead">Add your team.</p>
+
+            <div class="row" id="teammates">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="teammate-name-1">Teammate Name &amp; Waiver</label>
+                  <input type="text" class="form-control teammate" id="teammate-name-1" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                  <input type="file" class="form-control teammate-waiver" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="teammate-name-2">Teammate Name &amp; Waiver</label>
+                  <input type="text" class="form-control teammate" id="teammate-name-2" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                  <input type="file" class="form-control teammate-waiver" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="teammate-name-3">Teammate Name &amp; Waiver</label>
+                  <input type="text" class="form-control teammate" id="teammate-name-3" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                  <input type="file" class="form-control teammate-waiver" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="teammate-name-4">Teammate Name &amp; Waiver</label>
+                  <input type="text" class="form-control teammate" id="teammate-name-4" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                  <input type="file" class="form-control teammate-waiver" required>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+            <div class="col-md-6 text-center" id="teammateButton">
+              <button type="button" class="btn btn-success" onClick="addTeammate()">+ Add another</button>
+            </div>
+          </form><br>
+          <div class="alert alert-info" role="alert" style="display:none"><strong>Thanks for signing up!</strong> Now please donate at the right.</div>
+          <div class="alert alert-danger" role="alert" style="display:none"><strong>Uh oh!</strong> There was an error. Please reload and try again.</div>
+        </div><!--
+        --><div class="col-md-6 text-center vcenter">
+          <p class="lead" style="padding: 30px">
+            A donation of $25 is required to register. You can also pay $35 at the door!
+          </p>
+          <a class="btn btn-primary btn-lg" href="http://www.madisonholleranfoundation.org/donate/">Donate Now</a>   
+          <p style="padding:45px"><strong>Note:</strong> Please leave your captain and teammates' names in the notes on the donation form so that we know you registered</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="assets/js/jquery-1.10.2.min.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/waypoints.min.js"></script>
+  <script src="assets/js/jquery.scrollto.min.js"></script>
+  <script src="assets/js/jquery.localscroll.min.js"></script>
+  <script src="assets/js/jquery.prettyPhoto.js"></script>
+  <script src="assets/js/scripts.js"></script>
+  <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <!-- // <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5KShdU1nAO4apZMePEIeEjOQ6u5sCPhg&sensor=false"></script>
+  <script>
+    google.maps.event.addDomListener(window, 'load', init);
+    function init() {
+      var mapOptions = {
+        zoom: 13,
+        center: new google.maps.LatLng(41.035758, -74.143765),
+        styles: [{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}],
+        scrollwheel: false,
+        disableDefaultUI: true
+      };
+      var mapElement = document.getElementById('map');
+      var map = new google.maps.Map(mapElement, mapOptions);
+      var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(41.035758, -74.143765),
+          map: map,
+          title: 'Northern Highlands'
+      });
+    }
+  </script>
+
+  <script type="text/javascript">
+  Parse.initialize("nuT9HUvp3foyQprppmA9h5vAKNK6yc7lZO4SKpGI", "TgqoS8MFSJ4YGYBtofwvDpRHBWZxxaAaMHF992DG");
+  
+  $('#registration-form').submit(function(e){
+    e.preventDefault();
+    $form = $(this);
+    $form.find('button').prop('disabled', true);
+    $form.find('input').prop('disabled', true);
+
+    var Team = Parse.Object.extend("Team");
+    var team = new Team();
+    var Waiver = Parse.Object.extend("Waiver");
+    var captainWaiver = new Waiver();
+
+    var players = [];
+
+    var fileUploadControl = $form.find("#team-waiver")[0];
+    if (fileUploadControl.files.length > 0) {
+      var file = fileUploadControl.files[0];
+      var name = "waiver.pdf";
+      var parseFile = new Parse.File(name, file);
+      team.set("waiver", parseFile);
+    }
+
+    for (var i=0; i<$form.find('.teammate').length; i++) {
+      var z;
+      var teammateWaiver = new Waiver();
+      var f = $form.find('.teammate-waiver')[i];
+      if (f.files.length > 0) {
+        var x = f.files[0];
+        var y = "waiver.pdf";
+        z = new Parse.File(y, x);
+        waiver.set("waiver", z);
+        waiver.set("owner", $form.find('.teammate')[i].value)
+        teammateWaiver.save();
+      }
+      players.push($form.find('.teammate')[i].value);
+    }
+
+    var newteam = {
+      name: $form.find('#team-name').val(),
+      captain: {
+        name: $form.find('#captain-name').val(),
+        email: $form.find('#captain-email').val(),
+        phone: $form.find('#captain-phone').val()
+      },
+      players: players
+    }
+
+    team.save(newteam, {
+      success: function(object) { $(".alert-info").show(); },
+      error: function(model, error) { $(".alert-danger").show(); }
+    });
+  });
+
+  function addTeammate () {
+    var count = $('.teammate').length;
+    if (count == 7) { return false; }
+    var id = $('.teammate').length+1;
+    var teammate = '<div class="col-md-6">'+
+      '<div class="form-group">'+
+        '<label for="teammate-name-'+id+'">Teammate Name &amp; Waiver</label>'+
+        '<input type="text" class="form-control teammate" id="teammate-name-'+id+'" placeholder="Jane Doe" required>'+
+      '</div>'+
+      '<div class="form-group">'+
+        '<input type="file" class="form-control teammate-waiver" required>'+
+      '</div>'+
+    '</div>';
+    $("#teammates").append(teammate);
+    if (count == 6) { $('#teammateButton').remove() }
+  }
+  </script>
   </body>
 </html>
