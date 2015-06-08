@@ -10,6 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic' rel='stylesheet'>
     <link href="assets/css/animate.css" rel="stylesheet">
     <link href="assets/css/prettyPhoto.css" rel="stylesheet">
+    <link href="assets/css/bracket.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     
@@ -90,7 +91,7 @@
       <div class="row" id="teams"></div>
     </div>
   </section>
-  
+
   <section id="gallery" class="section" style="display:none">
     <div class="container">
       <div class="row">
@@ -133,7 +134,101 @@
       </div>
     </div>
   </section>
+<!--
+  <section>
+    <div class="container">
+      <div class="col-lg-6 text-center">
+        <h1>Tournament Bracket</h1>
+        <main id="tournament" class="text-left">
+          <ul class="round round-1">
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Lousville <span>79</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">NC A&T <span>48</span></li>
 
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Colo St <span>84</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">Missouri <span>72</span></li>
+
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top ">Oklahoma St <span>55</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom winner">Oregon <span>68</span></li>
+
+            <li class="spacer">&nbsp;</li>
+          </ul>
+        </main>
+      </div>
+      <div class="col-lg-6 text-center">
+        <h1>Consolation Bracket</h1>
+        <main id="tournament" class="text-left">
+          <ul class="round round-1">
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Lousville <span>79</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">NC A&T <span>48</span></li>
+
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Colo St <span>84</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">Missouri <span>72</span></li>
+
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top ">Oklahoma St <span>55</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom winner">Oregon <span>68</span></li>
+
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Saint Louis <span>64</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">New Mexico St <span>44</span></li>
+
+            <li class="spacer">&nbsp;</li>
+          </ul>
+          <ul class="round round-2">
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Lousville <span>82</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">Colo St <span>56</span></li>
+
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Oregon <span>74</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">Saint Louis <span>57</span></li>
+
+            <li class="spacer">&nbsp;</li>
+          </ul>
+          <ul class="round round-3">
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Lousville <span>77</span></li>
+            <li class="game game-spacer">&nbsp;</li>
+            <li class="game game-bottom ">Oregon <span>69</span></li>
+
+            <li class="spacer">&nbsp;</li>
+          </ul>
+          <ul class="round round-4">
+            <li class="spacer">&nbsp;</li>
+            
+            <li class="game game-top winner">Lousville <span>85</span></li>
+            
+            <li class="spacer">&nbsp;</li>
+          </ul>   
+        </main>
+      </div>
+    </div>
+  </section>
+ -->
   <script src="assets/js/jquery-1.10.2.min.js"></script>
   <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/waypoints.min.js"></script>
@@ -156,7 +251,7 @@
     return dat;
   }
 
-  $('#loginform').submit(function(e){
+  $('#loginform').submit(function(e) {
     e.preventDefault();
     Parse.User.logIn($('#username').val(), $('#password').val(), {
       success: function(user) { query(); },
@@ -173,7 +268,7 @@
     });
   }
 
-  function getDates(startDate, stopDate) {
+  function getDates (startDate, stopDate) {
     // if (stopDate > new Date()) { stopDate = new Date(); }
     var dateArray = new Array();
     var currentDate = startDate;
@@ -184,7 +279,7 @@
     return dateArray;
   }
 
-  function update() {
+  function update () {
     var a = moment([2015, 06, 27]);
     $('#clock').html(a.fromNow());
   }
@@ -198,15 +293,27 @@
       var object = results[i];
       var teammates = '<div class="row" id="teammates">';
       for (var j=0; j<object.get('players').length; j++) {
-        teammates += '<div class="col-md-2>'+object.get('players')[j]+'</div>';
+        teammates += '<div class="col-md-6">';
+        teammates += object.get('players')[j];
+        teammates += '</div>';
       }
       teammates += '</div>';
+
+      var captain = '<strong>'+object.get('captain').name+'</strong><br>'+
+          object.get('captain').email+'<br>'+
+          object.get('captain').phone+'<br>';
+
+      var badge = '';
+      if (object.get('verified')) badge = '<h1><span class="label label-primary">Verified</span></h1>';
+
+      var top = '<div class="row">'+
+          '<div class="col-md-6">'+captain+'</div>'+
+          '<div class="col-md-6 text-center">'+badge+'</div></div>';
+
       $('#teams').append(
         '<div class="col-md-4">'+
           '<h2>'+object.get('name')+'</h2>'+
-          '<strong>'+object.get('captain').name+'</strong><br>'+
-          object.get('captain').email+'<br>'+
-          object.get('captain').phone+'<br>'+
+          top+
           '<a href='+object.get('waiver').url()+' target="_blank">Waiver</a>'+
           teammates+
         '</div>'
